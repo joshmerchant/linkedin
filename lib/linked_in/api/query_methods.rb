@@ -93,7 +93,9 @@ module LinkedIn
           if event_type = options.delete(:event_type)
               path += "event-type=#{event_type}" 
           end
-          path += '&' if path.reverse[0] =~ /\&/
+          if path.reverse[0] =~ /\&/
+              path += '&' 
+          end
           if start = options.delete(:start)
               path += "start=#{start}" 
           end
