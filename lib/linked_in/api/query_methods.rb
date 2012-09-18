@@ -91,12 +91,13 @@ module LinkedIn
           end
           path += "/updates?"
           if event_type = options.delete(:event_type)
-              path += "event-type=#{event_type}" 
-          end
-          if path.reverse[0] =~ /\&/
-              path += '&' 
+              path += "event-type=#{CGI.escape event_type}" 
           end
           if start = options.delete(:start)
+              if path.reverse[0] =~ /\&/
+              path += '&' 
+          end
+
               path += "start=#{start}" 
           end
           path
