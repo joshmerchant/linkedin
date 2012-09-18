@@ -28,6 +28,11 @@ module LinkedIn
           simple_query(path, options)
       end
 
+      def company_search(options = {})
+          path = company_search_path(options)
+          simple_query(path,options)
+      end
+
       def group_memberships(options = {})
         path = "#{person_path(options)}/group-memberships"
         simple_query(path, options)
@@ -88,6 +93,14 @@ module LinkedIn
           path += "event-type=#{event_type}" if event_type = options.delete(:event_type)
           path += '&' if path.reverse[0] =~ /\&/
           path += "start=#{start}" if start = options.delete(:start)
+          path
+      end
+
+      def company_search_path(options)
+          path = "/company-search?"
+          if keywords = options.delete(:keywords)
+              path += "keywords=#{keywords}"
+          end
           path
       end
 
