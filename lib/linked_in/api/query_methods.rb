@@ -90,9 +90,13 @@ module LinkedIn
               return '' 
           end
           path += "/updates?"
-          path += "event-type=#{event_type}" if event_type = options.delete(:event_type)
+          if event_type = options.delete(:event_type)
+              path += "event-type=#{event_type}" 
+          end
           path += '&' if path.reverse[0] =~ /\&/
-          path += "start=#{start}" if start = options.delete(:start)
+          if start = options.delete(:start)
+              path += "start=#{start}" 
+          end
           path
       end
 
