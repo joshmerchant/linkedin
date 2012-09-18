@@ -94,9 +94,9 @@ module LinkedIn
               path += "event-type=#{CGI.escape event_type}" 
           end
           if start = options.delete(:start)
-              if path.reverse[0] =~ /\&/
-              path += '&' 
-          end
+              unless path.reverse[0] =~ /\&/
+                  path += '&' 
+              end
 
               path += "start=#{start}" 
           end
