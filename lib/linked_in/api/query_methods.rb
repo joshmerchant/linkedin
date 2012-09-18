@@ -99,7 +99,7 @@ module LinkedIn
       def company_search_path(options)
           path = "/company-search?"
           if keywords = options.delete(:keywords)
-              path += "keywords=#{keywords}"
+              path += "keywords=#{CGI.escape keywords}"
           end
           path
       end
